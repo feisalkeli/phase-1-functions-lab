@@ -15,10 +15,23 @@ function distanceFromHqInFeet(feet) {
 }
 
 function distanceTravelledInFeet(start, destination) {
-  if (`${destination}` <= ` ${start}`) {
-    return (`${start}` - `${destination}`) * 264;
+  if (destination < start) {
+    return (start - destination) * 264;
   } else {
     return (`${destination} ` - `${start}`) * 264;
   }
 }
-function calculatesFarePrice(start, destination) {}
+function calculatesFarePrice(start, destination) {
+  if ((start - destination) * 264 <= 400) {
+    return 0;
+  } else if (
+    (start - destination) * 264 >= 400 &&
+    (start - destination) * 264 <= 2000
+  ) {
+    return 2.56;
+  } else if ((destination - start) * 264 > 2000) {
+    return 25;
+  } else if ((start - destination) * 264 > 2500) {
+    return "cannot travel that far";
+  }
+}
